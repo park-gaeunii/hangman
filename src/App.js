@@ -120,7 +120,7 @@ function App() {
   }, [word] );
   useEffect( () => {
     let text = "";
-    if (state) {
+    if (state && lives !== 0) {
       text = `great work! you guessed the word.`;
     } else if (lives !== 0) {
       text = `you have ${lives} lives.`;
@@ -155,7 +155,11 @@ function App() {
     setAnswer(guessAnswer);
   }
 
-  const reset = () => setWord(wordArray[Math.floor(Math.random() * wordArray.length)].split(''));
+  const reset = () => {
+    setWord(wordArray[Math.floor(Math.random() * wordArray.length)].split(''));
+    setState(false);
+    setLives(10);
+  };
 
   return (
     <Container>
